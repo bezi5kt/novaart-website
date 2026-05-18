@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NovaArt - Transform Your Photos Into Stunning AI Portraits</title>
-    <meta name="description" content="Turn your favorite photos into beautiful AI-generated portraits. Professional quality artwork delivered in 24 hours. Oil painting, watercolor, sketch styles and more.">
+    <meta name="description" content="Turn your favorite photos into beautiful AI-generated portraits. Professional quality artwork delivered in 24 hours.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,11 +13,12 @@
         <div class="container">
             <div class="nav-brand">NovaArt</div>
             <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#upload">Order Now</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="order.html">Order Now</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -29,15 +30,15 @@
                 <h1>Transform Your Photos Into <span class="highlight">Stunning Portraits</span></h1>
                 <p class="hero-subtitle">AI-powered artistry meets professional quality. Choose from oil painting, watercolor, sketch, and more. Delivered in 24 hours.</p>
                 <div class="hero-buttons">
-                    <a href="#upload" class="btn btn-primary">Order Your Portrait</a>
-                    <a href="#gallery" class="btn btn-secondary">View Gallery</a>
+                    <a href="order.html" class="btn btn-primary">Order Your Portrait</a>
+                    <a href="gallery.html" class="btn btn-secondary">View Gallery</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
+    <!-- Gallery Preview -->
+    <section id="gallery-preview" class="gallery">
         <div class="container">
             <h2>Our Work</h2>
             <p class="section-subtitle">See how we transform ordinary photos into extraordinary art</p>
@@ -78,6 +79,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="gallery.html" class="btn btn-outline">View Full Gallery</a>
             </div>
         </div>
     </section>
@@ -122,77 +126,6 @@
         </div>
     </section>
 
-    <!-- Upload Section -->
-    <section id="upload" class="upload-section">
-        <div class="container">
-            <h2>Order Your Portrait</h2>
-            <p class="section-subtitle">Upload your photo and we'll create your masterpiece in 24 hours</p>
-            <div class="upload-card">
-                <form id="orderForm" class="order-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Your Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="style">Portrait Style *</label>
-                        <select id="style" name="style" required>
-                            <option value="">Choose a style...</option>
-                            <option value="oil">Oil Painting</option>
-                            <option value="watercolor">Watercolor</option>
-                            <option value="sketch">Pencil Sketch</option>
-                            <option value="popart">Pop Art</option>
-                            <option value="digital">Digital Art</option>
-                            <option value="custom">Custom Style (describe below)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="size">Portrait Size *</label>
-                        <select id="size" name="size" required>
-                            <option value="">Choose a size...</option>
-                            <option value="small">Small (8x10) - €45</option>
-                            <option value="medium">Medium (16x20) - €55</option>
-                            <option value="large">Large (24x36) - €65</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="photo">Upload Your Photo *</label>
-                        <div class="file-upload">
-                            <input type="file" id="photo" name="photo" accept="image/*" required>
-                            <div class="file-upload-label">
-                                <span id="fileName">Click to select or drag and drop your photo</span>
-                            </div>
-                            <div id="imagePreview" class="image-preview"></div>
-                        </div>
-                        <small>Accepted formats: JPG, PNG, HEIC. Max size: 10MB</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="notes">Special Requests (Optional)</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="Any specific details or preferences for your portrait?"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-large">Submit Order</button>
-                    <p class="form-note">You'll receive a confirmation email with payment instructions within 1 hour</p>
-                </form>
-
-                <div id="successMessage" class="success-message" style="display: none;">
-                    <div class="success-icon">✓</div>
-                    <h3>Order Received!</h3>
-                    <p>Thank you for your order. We've received your photo and will send you payment details shortly. Your portrait will be ready in 24 hours!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
         <div class="container">
@@ -200,43 +133,33 @@
             <p class="section-subtitle">Professional quality portraits at affordable prices</p>
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Small</h3>
-                    <div class="price">€45</div>
-                    <div class="price-details">8" x 10"</div>
-                    <ul class="features">
-                        <li>✓ Any portrait style</li>
-                        <li>✓ High-resolution file</li>
-                        <li>✓ 24-hour delivery</li>
-                        <li>✓ One revision included</li>
+                    <h3>Framed Prints</h3>
+                    <ul class="price-list">
+                        <li>30×40 cm — <strong>€34.90</strong></li>
+                        <li>40×50 cm — <strong>€44.90</strong></li>
+                        <li>50×70 cm — <strong>€64.90</strong></li>
                     </ul>
-                    <a href="#upload" class="btn btn-outline">Order Now</a>
+                    <a href="order.html" class="btn btn-outline">Order Now</a>
                 </div>
                 <div class="pricing-card featured">
                     <div class="popular-badge">Most Popular</div>
-                    <h3>Medium</h3>
-                    <div class="price">€55</div>
-                    <div class="price-details">16" x 20"</div>
-                    <ul class="features">
-                        <li>✓ Any portrait style</li>
-                        <li>✓ High-resolution file</li>
-                        <li>✓ 24-hour delivery</li>
-                        <li>✓ Two revisions included</li>
+                    <h3>Canvas Prints</h3>
+                    <ul class="price-list">
+                        <li>40×60 cm — <strong>€69.90</strong></li>
+                        <li>50×70 cm — <strong>€84.90</strong></li>
                     </ul>
-                    <a href="#upload" class="btn btn-primary">Order Now</a>
+                    <a href="order.html" class="btn btn-primary">Order Now</a>
                 </div>
                 <div class="pricing-card">
-                    <h3>Large</h3>
-                    <div class="price">€65</div>
-                    <div class="price-details">24" x 36"</div>
-                    <ul class="features">
-                        <li>✓ Any portrait style</li>
-                        <li>✓ High-resolution file</li>
-                        <li>✓ 24-hour delivery</li>
-                        <li>✓ Unlimited revisions</li>
+                    <h3>Posters & Design</h3>
+                    <ul class="price-list">
+                        <li>50×70 poster — <strong>€32.90</strong></li>
+                        <li>Custom design — <strong>+€20.00</strong></li>
                     </ul>
-                    <a href="#upload" class="btn btn-outline">Order Now</a>
+                    <a href="order.html" class="btn btn-outline">Order Now</a>
                 </div>
             </div>
+            <p class="pricing-note">✓ Any portrait style included • ✓ High-resolution file • ✓ 24-hour delivery</p>
         </div>
     </section>
 
@@ -247,18 +170,23 @@
             <div class="steps-grid">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Upload Your Photo</h3>
-                    <p>Choose your favorite photo and select your preferred portrait style</p>
+                    <h3>Create Account</h3>
+                    <p>Quick sign up to track your orders and save preferences</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>We Create Magic</h3>
-                    <p>Our AI artists transform your photo into a stunning portrait</p>
+                    <h3>Upload & Choose</h3>
+                    <p>Select your photo, style, and size that fits your needs</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
+                    <h3>We Create Magic</h3>
+                    <p>Our AI artists transform your photo into stunning art</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
                     <h3>Receive Your Art</h3>
-                    <p>Get your high-resolution portrait in 24 hours, ready to print or share</p>
+                    <p>Get your portrait delivered in 24 hours, ready to display</p>
                 </div>
             </div>
         </div>

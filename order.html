@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Portrait - NovaArt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">NovaArt</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="order.html">Order Now</a></li>
+                <li><a href="login.html" class="nav-login" id="navAuth">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Order Section -->
+    <section class="order-section">
+        <div class="container">
+            <h2>Create Your Portrait</h2>
+            <p class="section-subtitle">Upload your photo and customize your order</p>
+
+            <div class="order-container">
+                <!-- Order Form -->
+                <div class="order-form-card">
+                    <form id="orderForm" class="order-form">
+                        <!-- Step 1: Photo Upload -->
+                        <div class="form-section">
+                            <h3>1. Upload Your Photo</h3>
+                            <div class="form-group">
+                                <div class="file-upload">
+                                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                                    <div class="file-upload-label">
+                                        <span id="fileName">Click to select or drag and drop your photo</span>
+                                    </div>
+                                    <div id="imagePreview" class="image-preview"></div>
+                                </div>
+                                <button type="button" id="removeImageBtn" class="btn-remove" style="display: none;">✕ Remove Image</button>
+                                <small>Accepted formats: JPG, PNG, HEIC. Max size: 10MB. Best quality: high-resolution photos.</small>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Style Selection -->
+                        <div class="form-section">
+                            <h3>2. Choose Portrait Style</h3>
+                            <div class="form-group">
+                                <select id="style" name="style" required>
+                                    <option value="">Select a style...</option>
+                                    <option value="oil">Oil Painting</option>
+                                    <option value="watercolor">Watercolor</option>
+                                    <option value="sketch">Pencil Sketch</option>
+                                    <option value="popart">Pop Art</option>
+                                    <option value="digital">Digital Art</option>
+                                    <option value="custom">Custom Style (describe in notes)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Size & Type Selection -->
+                        <div class="form-section">
+                            <h3>3. Select Size & Type</h3>
+                            <div class="form-group">
+                                <select id="productSize" name="productSize" required>
+                                    <option value="">Choose size and type...</option>
+                                    <optgroup label="Framed Prints">
+                                        <option value="30x40_framed" data-price="34.90">30×40 cm Framed Print — €34.90</option>
+                                        <option value="40x50_framed" data-price="44.90">40×50 cm Framed Print — €44.90</option>
+                                        <option value="50x70_framed" data-price="64.90">50×70 cm Framed Print — €64.90</option>
+                                    </optgroup>
+                                    <optgroup label="Canvas Prints">
+                                        <option value="40x60_canvas" data-price="69.90">40×60 cm Canvas — €69.90</option>
+                                        <option value="50x70_canvas" data-price="84.90">50×70 cm Canvas — €84.90</option>
+                                    </optgroup>
+                                    <optgroup label="Posters">
+                                        <option value="50x70_poster" data-price="32.90">50×70 cm Poster — €32.90</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="customDesign" name="customDesign">
+                                    Add Personalized Design (+€20.00)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Delivery Address -->
+                        <div class="form-section">
+                            <h3>4. Delivery Address</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="street">Street Address *</label>
+                                    <input type="text" id="street" name="street" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <input type="text" id="city" name="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="postalCode">Postal Code *</label>
+                                    <input type="text" id="postalCode" name="postalCode" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <input type="text" id="country" name="country" value="Slovenia" required>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Special Notes -->
+                        <div class="form-section">
+                            <h3>5. Special Requests (Optional)</h3>
+                            <div class="form-group">
+                                <textarea id="notes" name="notes" rows="4" placeholder="Any specific details, preferences, or custom instructions for your portrait?"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">
+                            Place Order — <span id="totalPrice">€0.00</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Order Summary Sidebar -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-content">
+                        <div class="summary-row">
+                            <span>Product:</span>
+                            <span id="summaryProduct">Not selected</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Style:</span>
+                            <span id="summaryStyle">Not selected</span>
+                        </div>
+                        <div class="summary-row" id="customDesignRow" style="display: none;">
+                            <span>Custom Design:</span>
+                            <span>+€20.00</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row summary-total">
+                            <span>Total:</span>
+                            <span id="summaryTotal">€0.00</span>
+                        </div>
+                        <div class="summary-note">
+                            <p>✓ 24-hour delivery</p>
+                            <p>✓ High-resolution file included</p>
+                            <p>✓ Free revisions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 NovaArt. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="order.js"></script>
+</body>
+</html>
