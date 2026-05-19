@@ -2,7 +2,6 @@
 function checkAuth() {
     const user = localStorage.getItem('novaart_user');
     if (!user) {
-        // Redirect to login if not authenticated
         alert('Please log in or create an account to place an order.');
         window.location.href = 'login.html';
         return false;
@@ -18,14 +17,7 @@ function updateNav() {
     if (user && navAuth) {
         const userData = JSON.parse(user);
         navAuth.textContent = userData.name.split(' ')[0];
-        navAuth.href = '#';
-        navAuth.onclick = (e) => {
-            e.preventDefault();
-            if (confirm('Log out?')) {
-                localStorage.removeItem('novaart_user');
-                window.location.href = 'index.html';
-            }
-        };
+        navAuth.href = 'account.html';
     }
 }
 
@@ -38,17 +30,14 @@ const removeBtn = document.getElementById('removeImageBtn');
 fileInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
-        // Validate file size (max 10MB)
         if (file.size > 10 * 1024 * 1024) {
             alert('File size must be less than 10MB. Please choose a smaller file.');
             this.value = '';
             return;
         }
 
-        // Update file name display
         fileNameDisplay.textContent = file.name;
         
-        // Show image preview
         const reader = new FileReader();
         reader.onload = function(e) {
             imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
@@ -59,7 +48,6 @@ fileInput.addEventListener('change', function(e) {
     }
 });
 
-// Remove image button
 removeBtn.addEventListener('click', function() {
     fileInput.value = '';
     fileNameDisplay.textContent = 'Click to select or drag and drop your photo';
@@ -80,7 +68,6 @@ function updateOrderSummary() {
     const designFee = customDesignCheckbox.checked ? 20 : 0;
     const total = basePrice + designFee;
 
-    // Update summary sidebar
     document.getElementById('summaryProduct').textContent = 
         selectedOption.value ? selectedOption.text.split('—')[0].trim() : 'Not selected';
     
@@ -98,16 +85,14 @@ productSizeSelect.addEventListener('change', updateOrderSummary);
 customDesignCheckbox.addEventListener('change', updateOrderSummary);
 styleSelect.addEventListener('change', updateOrderSummary);
 
-// Form submission
+// Form submission with file download
 const orderForm = document.getElementById('orderForm');
 
 orderForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Check authentication
     if (!checkAuth()) return;
 
-    // Validate all required fields
     const formData = new FormData(orderForm);
     const photo = formData.get('photo');
     
@@ -128,18 +113,18 @@ orderForm.addEventListener('submit', function(e) {
         return;
     }
 
-    // Get user data
     const user = JSON.parse(localStorage.getItem('novaart_user'));
 
-    // Calculate total
     const selectedOption = productSizeSelect.options[productSizeSelect.selectedIndex];
     const basePrice = parseFloat(selectedOption.dataset.price);
     const designFee = customDesignCheckbox.checked ? 20 : 0;
     const total = basePrice + designFee;
 
-    // Create order object
+    const orderNumber = 'NA-' + Date.now().toString().slice(-5);
+    const timestamp = new Date().toLocaleString('en-GB');
+
     const order = {
-        orderNumber: 'NA-' + Date.now().toString().slice(-5),
+        orderNumber: orderNumber,
         customer: {
             name: user.name,
             email: user.email,
@@ -148,16 +133,66 @@ orderForm.addEventListener('submit', function(e) {
         product: selectedOption.text.split('—')[0].trim(),
         style: styleSelect.options[styleSelect.selectedIndex].text,
         address: `${street}, ${city}, ${postalCode}, ${country}`,
-        notes: formData.get('notes'),
+        notes: formData.get('notes') || 'None',
         customDesign: customDesignCheckbox.checked,
         total: total.toFixed(2),
-        timestamp: new Date().toISOString()
+        timestamp: timestamp
     };
 
-    // Store order in localStorage (in production, send to backend)
-    localStorage.setItem('novaart_last_order', JSON.stringify(order));
+    // Create text file content with proper formatting
+    const fileContent = `NovaArt - Order Details
+===============================
 
-    // Redirect to confirmation page
+Order Number: ${order.orderNumber}
+Date: ${order.timestamp}
+
+CUSTOMER INFORMATION
+--------------------
+Name: ${order.customer.name}
+Email: ${order.customer.email}
+Phone: ${order.customer.phone}
+
+ORDER DETAILS
+-------------
+Product: ${order.product}
+Style: ${order.style}
+Custom Design: ${order.customDesign ? 'Yes (+€20.00)' : 'No'}
+
+DELIVERY ADDRESS
+----------------
+${order.address}
+
+SPECIAL NOTES
+-------------
+${order.notes}
+
+TOTAL AMOUNT
+------------
+€${order.total}
+
+===============================
+NovaArt - Transform Your Photos Into Stunning Portraits
+`;
+
+    // Create filename with customer name and surname
+    const nameParts = user.name.trim().split(' ');
+    const firstName = nameParts[0] || 'Customer';
+    const lastName = nameParts[nameParts.length - 1] || '';
+    const filename = `Order - ${firstName} ${lastName}.txt`;
+
+    // Download file
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+
+    // Store order and redirect
+    localStorage.setItem('novaart_last_order', JSON.stringify(order));
     window.location.href = 'confirmation.html';
 });
 

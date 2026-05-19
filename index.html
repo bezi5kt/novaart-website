@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaArt - Transform Your Photos Into Stunning AI Portraits</title>
-    <meta name="description" content="Turn your favorite photos into beautiful AI-generated portraits. Professional quality artwork delivered in 24 hours.">
+    <title>NovaArt - Transform Your Photos Into Stunning Portraits</title>
+    <meta name="description" content="Turn your favorite photos into beautiful portraits. Professional quality artwork delivered in 24 hours.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">NovaArt</div>
+            <a href="index.html" class="nav-brand">
+                <img src="logo.png" alt="NovaArt">
+            </a>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="order.html">Order Now</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="login.html" class="nav-login">Login</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="nav-login" id="navAuth">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -28,7 +30,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Transform Your Photos Into <span class="highlight">Stunning Portraits</span></h1>
-                <p class="hero-subtitle">AI-powered artistry meets professional quality. Choose from oil painting, watercolor, sketch, and more. Delivered in 24 hours.</p>
+                <p class="hero-subtitle">Professional artistry meets exceptional quality. Choose from oil painting, watercolor, sketch, and more.</p>
                 <div class="hero-buttons">
                     <a href="order.html" class="btn btn-primary">Order Your Portrait</a>
                     <a href="gallery.html" class="btn btn-secondary">View Gallery</a>
@@ -50,7 +52,7 @@
                             <span class="label">Original Photo</span>
                         </div>
                         <div class="after">
-                            <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=400&h=400&fit=crop" alt="AI Portrait">
+                            <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=400&h=400&fit=crop" alt="Portrait">
                             <span class="label">Oil Painting Style</span>
                         </div>
                     </div>
@@ -62,7 +64,7 @@
                             <span class="label">Original Photo</span>
                         </div>
                         <div class="after">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" alt="AI Portrait">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" alt="Portrait">
                             <span class="label">Watercolor Style</span>
                         </div>
                     </div>
@@ -74,7 +76,7 @@
                             <span class="label">Original Photo</span>
                         </div>
                         <div class="after">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="AI Portrait">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" alt="Portrait">
                             <span class="label">Sketch Style</span>
                         </div>
                     </div>
@@ -126,43 +128,6 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2>Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">Professional quality portraits at affordable prices</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Framed Prints</h3>
-                    <ul class="price-list">
-                        <li>30×40 cm — <strong>€34.90</strong></li>
-                        <li>40×50 cm — <strong>€44.90</strong></li>
-                        <li>50×70 cm — <strong>€64.90</strong></li>
-                    </ul>
-                    <a href="order.html" class="btn btn-outline">Order Now</a>
-                </div>
-                <div class="pricing-card featured">
-                    <div class="popular-badge">Most Popular</div>
-                    <h3>Canvas Prints</h3>
-                    <ul class="price-list">
-                        <li>40×60 cm — <strong>€69.90</strong></li>
-                        <li>50×70 cm — <strong>€84.90</strong></li>
-                    </ul>
-                    <a href="order.html" class="btn btn-primary">Order Now</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Posters & Design</h3>
-                    <ul class="price-list">
-                        <li>50×70 poster — <strong>€32.90</strong></li>
-                        <li>Custom design — <strong>+€20.00</strong></li>
-                    </ul>
-                    <a href="order.html" class="btn btn-outline">Order Now</a>
-                </div>
-            </div>
-            <p class="pricing-note">✓ Any portrait style included • ✓ High-resolution file • ✓ 24-hour delivery</p>
-        </div>
-    </section>
-
     <!-- How It Works -->
     <section class="how-it-works">
         <div class="container">
@@ -180,38 +145,13 @@
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>We Create Magic</h3>
-                    <p>Our AI artists transform your photo into stunning art</p>
+                    <h3>We Create Your Portrait</h3>
+                    <p>Our artists transform your photo into stunning art</p>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
                     <h3>Receive Your Art</h3>
-                    <p>Get your portrait delivered in 24 hours, ready to display</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p class="section-subtitle">Have questions? We're here to help!</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>hello@novaart.example</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">⏱️</div>
-                    <h3>Turnaround Time</h3>
-                    <p>24 hours guaranteed</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">💬</div>
-                    <h3>Social Media</h3>
-                    <p>@novaart (coming soon)</p>
+                    <p>Get your portrait delivered, ready to display</p>
                 </div>
             </div>
         </div>
